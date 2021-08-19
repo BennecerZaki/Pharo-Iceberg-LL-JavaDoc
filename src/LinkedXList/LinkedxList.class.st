@@ -46,6 +46,22 @@ LinkedxList >> insertAtHead: data [
 	length := length + 1
 ]
 
+{ #category : #operations }
+LinkedxList >> insertAtIndex: anIndex value: aValue [
+	
+	| prev curr |
+	
+	anIndex = 1
+		ifTrue: [ ^ self insertAtHead: aValue ].
+	
+	prev := self getByIndex: anIndex - 1.
+	prev ifNil: [ ^ nil ].
+	
+	curr := LLNode initializeWithData: aValue next: prev next.
+	prev next: curr.
+	length := length + 1
+]
+
 { #category : #accessing }
 LinkedxList >> length [
 	^ length 
