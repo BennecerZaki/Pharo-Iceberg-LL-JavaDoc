@@ -51,3 +51,11 @@ LLNode >> next: aNext [
 
 	next := aNext
 ]
+
+{ #category : #printing }
+LLNode >> printOn: aStream [
+	aStream 
+		nextPutAll: data printString;
+		nextPutAll: ' -> ';
+		nextPutAll: next printString
+]
