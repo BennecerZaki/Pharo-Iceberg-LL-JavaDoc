@@ -23,6 +23,15 @@ LinkedxList >> initialize [
 	length := 0
 ]
 
+{ #category : #operations }
+LinkedxList >> insertAtHead: data [
+
+	| newNode |
+	newNode := LLNode initializeWithData: data next: head.
+	head := newNode.
+	length := length + 1
+]
+
 { #category : #accessing }
 LinkedxList >> length [
 	^ length 
