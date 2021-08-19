@@ -136,6 +136,65 @@ LinkedxListTest >> testInsertAtIndexOfTheHead [
 ]
 
 { #category : #tests }
+LinkedxListTest >> testRemoveAtIndexGreaterThanListLength [
+
+	| ll |
+	
+	ll := LinkedxList new.
+	
+	ll insertAtHead: 3.
+	ll insertAtHead: 4.
+	ll removeAtIndex: 5.
+	
+	self assert: ll length equals: 2
+]
+
+{ #category : #tests }
+LinkedxListTest >> testRemoveAtIndexInTheMiddleOfTheList [
+
+	| ll |
+	
+	ll := LinkedxList new.
+	
+	ll insertAtHead: 3.
+	ll insertAtHead: 4.
+	ll removeAtIndex: 2.
+	
+	self assert: ll length equals: 1
+]
+
+{ #category : #tests }
+LinkedxListTest >> testRemoveAtIndexLessThanOne [
+
+	| ll |
+	
+	ll := LinkedxList new.
+	
+	ll insertAtHead: 3.
+	ll insertAtHead: 4.
+	ll removeAtIndex: 0.
+	
+	self assert: ll length equals: 2
+	
+]
+
+{ #category : #tests }
+LinkedxListTest >> testRemoveAtIndexOfTheHead [
+
+	| ll |
+	
+	ll := LinkedxList new.
+	
+	ll insertAtHead: 3.
+	ll insertAtHead: 4.
+	ll removeAtIndex: 1.
+	
+	self assert: ll length equals: 1.
+	self assert: ll head data equals: 3.
+	self assert: ll head next equals: nil.
+]
+
+{ #category : #tests }
 LinkedxListTest >> testRemoveHead [
 
 	| ll |

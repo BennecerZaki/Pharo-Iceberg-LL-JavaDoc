@@ -68,6 +68,21 @@ LinkedxList >> length [
 ]
 
 { #category : #operations }
+LinkedxList >> removeAtIndex: anIndex [
+
+	| prev |
+	
+	anIndex = 1
+		ifTrue: [ ^ self removeHead ].
+	
+	prev := self getByIndex: anIndex - 1.
+	prev ifNil: [ ^ nil ].
+	
+	prev next: prev next next.
+	length := length - 1
+]
+
+{ #category : #operations }
 LinkedxList >> removeHead [
 
 	head := head next.
