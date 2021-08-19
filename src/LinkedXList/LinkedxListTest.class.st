@@ -5,6 +5,55 @@ Class {
 }
 
 { #category : #tests }
+LinkedxListTest >> testGetByIndexGreaterThanListLength [
+
+	| ll index |
+	ll := LinkedxList new.
+	ll insertAtHead: 20.
+	ll insertAtHead: 30.
+	index := ll getByIndex: 5.
+	self assert: index equals: nil 
+]
+
+{ #category : #tests }
+LinkedxListTest >> testGetByIndexInTheMiddleOfTheList [
+
+	| ll index |
+	
+	ll := LinkedxList new.
+	
+	ll insertAtHead: 20.
+	ll insertAtHead: 30.
+	ll insertAtHead: 50.
+	
+	index := ll getByIndex: 3.
+	
+	self assert: index data equals: 20
+]
+
+{ #category : #tests }
+LinkedxListTest >> testGetByIndexLessThanOne [
+
+	| ll index |
+	ll := LinkedxList new.
+	ll insertAtHead: 20.
+	ll insertAtHead: 30.
+	index := (ll getByIndex: 0).
+	self assert: index  equals: nil
+]
+
+{ #category : #tests }
+LinkedxListTest >> testGetByIndexOfTheHead [
+
+	| ll index |
+	ll := LinkedxList new.
+	ll insertAtHead: 20.
+	ll insertAtHead: 30.
+	index := ll getByIndex: 1.
+	self assert: index data equals: 30
+]
+
+{ #category : #tests }
 LinkedxListTest >> testInitialize [ 
 
 	| ll |
