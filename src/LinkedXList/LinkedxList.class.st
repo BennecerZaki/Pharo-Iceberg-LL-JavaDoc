@@ -66,3 +66,10 @@ LinkedxList >> insertAtIndex: anIndex value: aValue [
 LinkedxList >> length [
 	^ length 
 ]
+
+{ #category : #operations }
+LinkedxList >> removeHead [
+
+	head := head next.
+	length := length - 1 
+]

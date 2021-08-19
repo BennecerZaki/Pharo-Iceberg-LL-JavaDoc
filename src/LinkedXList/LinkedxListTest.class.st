@@ -134,3 +134,18 @@ LinkedxListTest >> testInsertAtIndexOfTheHead [
 	self assert: ll head data equals: 20.
 	self assert: ll head next data equals: 4.
 ]
+
+{ #category : #tests }
+LinkedxListTest >> testRemoveHead [
+
+	| ll |
+	
+	ll := LinkedxList new.
+	
+	ll insertAtHead: 3.
+	ll insertAtHead: 4.
+	ll removeHead.
+	
+	self assert: ll length equals: 1.
+	self assert: ll head data equals: 3.
+]
