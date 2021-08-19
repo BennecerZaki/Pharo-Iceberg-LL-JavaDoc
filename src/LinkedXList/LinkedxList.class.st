@@ -10,3 +10,20 @@ Class {
 	],
 	#category : #'LinkedXList-Classes'
 }
+
+{ #category : #accessing }
+LinkedxList >> head [
+	^ head
+]
+
+{ #category : #initialization }
+LinkedxList >> initialize [
+	
+	super initialize.
+	length := 0
+]
+
+{ #category : #accessing }
+LinkedxList >> length [
+	^ length 
+]
