@@ -11,6 +11,20 @@ Class {
 	#category : #'LinkedXList-Classes'
 }
 
+{ #category : #operations }
+LinkedxList >> getByIndex: anIndex [
+
+	| current |
+	(anIndex < 1) | (anIndex > length) ifTrue: [ ^ nil ].
+	anIndex = 1 ifTrue: [ ^ head ].
+	
+	current := head next.
+	anIndex - 2 timesRepeat: [ current := current next  ].
+	
+	^ current
+	
+]
+
 { #category : #accessing }
 LinkedxList >> head [
 	^ head
