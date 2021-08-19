@@ -11,6 +11,18 @@ Class {
 	#category : #'LinkedXList-Classes'
 }
 
+{ #category : #initialization }
+LLNode class >> initializeWithData: aData [
+
+	^ self new data: aData
+]
+
+{ #category : #initialization }
+LLNode class >> initializeWithData: aData next: aNext [
+
+	^ self new data: aData ; next: aNext
+]
+
 { #category : #accessing }
 LLNode >> data [
 	^ data
@@ -20,6 +32,13 @@ LLNode >> data [
 LLNode >> data: aData [
 
 	data := aData
+]
+
+{ #category : #initialization }
+LLNode >> initialize [
+
+	super initialize.
+	data := 0.
 ]
 
 { #category : #accessing }
