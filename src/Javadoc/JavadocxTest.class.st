@@ -60,5 +60,5 @@ JavadocxTest >> testGenerateDocClass [
 		stream contents
 	].
 
-	self assert: strm size equals: 208
+	self assert: strm size equals: 162
 ]
