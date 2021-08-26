@@ -4,6 +4,25 @@ Class {
 	#category : #Javadoc
 }
 
+{ #category : #adding }
+Javadoc class >> addToFile: aFile aStream: aStream [
+	
+	| strm |
+	strm := ''.
+	aFile exists ifTrue: [ 
+		strm := aFile readStreamDo: [ :stream |
+			stream contents
+		].
+	].
+
+
+	aFile writeStreamDo: [ :stream |
+		stream 
+			nextPutAll: strm;
+			nextPutAll: aStream
+	].
+]
+
 { #category : #operations }
 Javadoc class >> generate: aClass at: aString [ 
 
@@ -28,13 +47,15 @@ Javadoc class >> generate: aClass at: aString [
 { #category : #printing }
 Javadoc class >> printClass: aClass onFile: aFile [
 
-	aFile writeStreamDo: [ :stream |
+	| strm |
+	strm := String streamContents: [ :stream |
 		stream 
 			nextPutAll: 'Classe ';
 			nextPutAll: aClass printString;
 			nextPut: Character cr;
 			nextPut: Character cr
 	].
+	self addToFile: aFile aStream: strm
 	
 ]
 
@@ -43,17 +64,14 @@ Javadoc class >> printInstVarOf: aClass onFile: aFile [
 
 	| strm |
 	
-	strm := aFile readStreamDo: [ :stream |
-		stream contents
-	].
-
-	aFile writeStreamDo: [ :stream |
+	strm := String streamContents: [ :stream |
 		stream 
-			nextPutAll: strm;
 			nextPutAll: 'Instance variables: ';
 			nextPutAll: aClass instVarNames printString;
 			nextPut: Character cr
 	].
+
+	self addToFile: aFile aStream: strm
 	
 ]
 
@@ -62,17 +80,13 @@ Javadoc class >> printMethodsOf: aClass onFile: aFile [
 
 	| strm |
 	
-	strm := aFile readStreamDo: [ :stream |
-		stream contents
-	].
-
-	aFile writeStreamDo: [ :stream |
+	strm := String streamContents:[ :stream |
 		stream 
-			nextPutAll: strm;
 			nextPutAll: 'Methods: ';
 			nextPutAll: aClass methodDict printString
 	].
-	
+
+	self addToFile: aFile aStream: strm
 ]
 
 { #category : #printing }
@@ -94,13 +108,8 @@ Javadoc class >> printSubClassesOf: aClass onFile: aFile withPath: aPath [
 
 	| strm |
 	
-	strm := aFile readStreamDo: [ :stream |
-		stream contents
-	].
-
-	aFile writeStreamDo: [ :stream |
+	strm := String streamContents: [ :stream |
 		stream 
-			nextPutAll: strm;
 			nextPut: Character cr;
 			nextPutAll: 'Subclasses: ';
 			nextPutAll: aClass subclasses	printString;
@@ -110,6 +119,8 @@ Javadoc class >> printSubClassesOf: aClass onFile: aFile withPath: aPath [
 			nextPutAll: '.txt';
 			nextPut: Character cr
 	].
+
+	self addToFile: aFile aStream: strm
 	
 ]
 
@@ -118,13 +129,8 @@ Javadoc class >> printSuperClass: aClass onFile: aFile withPath: aPath [
 
 	| strm |
 	
-	strm := aFile readStreamDo: [ :stream |
-		stream contents
-	].
-
-	aFile writeStreamDo: [ :stream |
+	strm := String streamContents: [ :stream |
 		stream 
-			nextPutAll: strm;
 			nextPutAll: 'Super classe: '.
 		((aClass superclass) = Object) ifFalse: [ 
 			stream
@@ -135,5 +141,7 @@ Javadoc class >> printSuperClass: aClass onFile: aFile withPath: aPath [
 				nextPutAll: '.txt'.
 	 		].
 	].
+
+	self addToFile: aFile aStream: strm
 	
 ]

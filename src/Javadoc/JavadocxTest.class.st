@@ -5,6 +5,24 @@ Class {
 }
 
 { #category : #tests }
+JavadocxTest >> testAddToFile [
+
+	| file root strm |
+
+	root := '/home/jpeg/Desktop/classe.txt'.
+	strm := ''.
+	file := root asFileReference.
+	self assert: strm equals: ''.
+	
+	Javadoc addToFile: file aStream: 'Hello There'.
+	strm := file readStreamDo: [ :stream |
+		stream contents
+	].
+
+	self assert: strm equals: 'Hello There'
+]
+
+{ #category : #tests }
 JavadocxTest >> testFileCreation [
 
 	| classeA file root |
